@@ -1,0 +1,37 @@
+# Python bytecode
+*.py[cod]
+__pycache__/
+*.so
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Virtual environment
+venv/
+myenv/
+env/
+*/venv/
+*/env/
+
+# Django secret key and local settings
+settings_local.py
+.env
+
+# Media and static files
+/media
+/staticfiles
+
+# VS Code settings
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
