@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <nav>
+        <h1>Admin Dashboard</h1>
+    </nav>
+    <div class="card-container">
+        <!-- Card One: Assign Data -->
+        <a href="{% url 'upload_file' %}" class="card">
+            <h2>Assign Data</h2>
+            <p>Upload files and assign data to users efficiently.</p>
+        </a>
+
+        <!-- Card Two: Check Work Status -->
+        <a href="{% url 'work_status' %}" class="card">
+            <h2>Check Work Status</h2>
+            <p>Monitor the current status of the assigned work.</p>
+        </a>
+
+        <!-- Card Three: Transfer User Data -->
+        <a href="{% url 'change_user' %}" class="card">
+            <h2>Transfer User Data</h2>
+            <p>Move user data from one user to another seamlessly.</p>
+        </a>
+    </div>
+</body>
+</html>

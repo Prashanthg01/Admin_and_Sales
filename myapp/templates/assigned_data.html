@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assigned Data</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+</head>
+<body>
+
+    <h1>Assigned Data</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Investigate Date</th>
+                    <th>Schedule Date</th>
+                    <th>Lead</th>
+                    <th>Response</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>{{ item.phonenumber }}</td>
+                    <td>
+                        <input type="text" class="datepicker" name="investigate_date_{{ forloop.counter }}" value="{{ item.investigate_date }}">
+                    </td>
+                    <td>
+                        <input type="text" class="datepicker" name="schedule_date_{{ forloop.counter }}" value="{{ item.schedule_date }}">
+                    </td>
+                    <td>
+                        <select name="lead_{{ forloop.counter }}">
+                            <option value="High" {% if item.lead == "High" %}selected{% endif %}>High</option>
+                            <option value="Medium" {% if item.lead == "Medium" %}selected{% endif %}>Medium</option>
+                            <option value="Low" {% if item.lead == "Low" %}selected{% endif %}>Low</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="response_{{ forloop.counter }}">
+                            <option value="Interested" {% if item.response == "Interested" %}selected{% endif %}>Interested</option>
+                            <option value="Good" {% if item.response == "Good" %}selected{% endif %}>Good</option>
+                            <option value="Bad" {% if item.response == "Bad" %}selected{% endif %}>Bad</option>
+                            <option value="Not Interested" {% if item.response == "Not Interested" %}selected{% endif %}>Not Interested</option>
+                        </select>
+                    </td>
+                </tr>
+                <input type="hidden" name="name_{{ forloop.counter }}" value="{{ item.name }}">
+                <input type="hidden" name="email_{{ forloop.counter }}" value="{{ item.email }}">
+                <input type="hidden" name="phonenumber_{{ forloop.counter }}" value="{{ item.phonenumber }}">
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(function() {
+            $(".datepicker").datepicker({ dateFormat: 'yy-mm-dd' });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <nav>
+        <h1>Sales Dashboard</h1>
+    </nav>
+    <div class="card-container">
+        <!-- Card Two: Check Work Status -->
+        <a href="{% url 'assigned_data' %}" class="card">
+            <h2>Check assigned_data</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus, ullam.</p>
+        </a>
+        <!-- Card One: Assign Data -->
+        <a href="{% url 'scheduled_calls' %}" class="card">
+            <h2>scheduled_calls</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum, itaque.</p>
+        </a>
+    </div>
+</body>
+</html>
