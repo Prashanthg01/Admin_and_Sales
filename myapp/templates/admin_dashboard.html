@@ -19,16 +19,57 @@
         </a>
 
         <!-- Card Two: Check Work Status -->
-        <a href="{% url 'work_status' %}" class="card">
-            <h2>Check Work Status</h2>
+        <a href="{% url 'work_history' %}" class="card">
+            <h2>Check Work History</h2>
             <p>Monitor the current status of the assigned work.</p>
         </a>
 
         <!-- Card Three: Transfer User Data -->
-        <a href="{% url 'change_user' %}" class="card">
+        <div class="card" id="transferCard">
             <h2>Transfer User Data</h2>
             <p>Move user data from one user to another seamlessly.</p>
+        
+            <!-- Hidden form to transfer user data -->
+            <form id="transferForm" action="{% url 'admin_dashboard' %}" method="POST" style="display: none;">
+                {% csrf_token %}
+                <label for="selectedUser">Selected User:</label>
+                <select id="selectedUser" name="selected_user">
+                    <option value="">--Select Current User--</option>
+                    {% for user in users %}
+                        <option value="{{ user.username }}">{{ user.username }}</option>
+                    {% endfor %}
+                </select>
+        
+                <label for="newUser">New User:</label>
+                <select id="newUser" name="new_user">
+                    <option value="">--Select New User--</option>
+                    {% for user in users %}
+                        <option value="{{ user.username }}">{{ user.username }}</option>
+                    {% endfor %}
+                </select>
+        
+                <input type="submit" value="Transfer Data">
+            </form>
+        </div>        
+
+        <!-- Card Three: Transfer User Data -->
+        <a href="{% url 'review_work' %}" class="card">
+            <h2>Review Work</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
         </a>
     </div>
 </body>
+<script>
+    document.getElementById("transferCard").addEventListener("click", function(event) {
+    var form = document.getElementById("transferForm");
+    if (!event.target.closest('form')) {
+        if (form.style.display === "none" || form.style.display === "") {
+            form.style.display = "block";
+        } else {
+            form.style.display = "none";
+        }
+    }
+});
+
+</script>
 </html>
